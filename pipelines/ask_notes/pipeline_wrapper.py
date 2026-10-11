@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import time
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
@@ -17,6 +18,7 @@ from haystack.core.component import component
 from haystack.dataclasses import ChatMessage, Document
 from haystack.utils import Secret
 from loguru import logger
+from pydantic import BaseModel, ValidationError
 
 from mdrack.config.settings import load_settings
 from mdrack.embeddings.lmstudio import LMStudioProvider
@@ -45,7 +47,11 @@ SYSTEM_PROMPT = (
     "Если в документах нет ответа, прямо скажи об этом и не придумывай. "
     "Не подставляй номера стандартов, даты и значения из памяти: "
     "используй только то, что есть в документах. "
-    "Ссылайся на источники в формате [chunk_id] прямо в тексте ответа."
+    "Ссылайся на источники в формате [chunk_id] прямо в тексте ответа. "
+    "Отвечай СТРОГО одним JSON-объектом без постороннего текста: "
+    '{"answer": "текст ответа", "citations": ["chunk_id", ...]}. '
+    "В citations перечисляй только chunk_id из предоставленных документов, "
+    "минимум один, без квадратных скобок внутри значений."
 )
 
 USER_PROMPT = """Документы:
@@ -56,6 +62,9 @@ USER_PROMPT = """Документы:
 {% endfor %}
 
 Вопрос: {{ question }}
+{% if feedback %}
+Предыдущий ответ отклонён валидатором: {{ feedback }}. Исправь ответ и соблюдай формат JSON.
+{% endif %}
 """
 
 FALLBACK_MESSAGE = (
@@ -66,6 +75,17 @@ FALLBACK_MESSAGE = (
 
 class ServiceTimeout(RuntimeError):
     """Шаг (поиск или модель) не уложился в отведённое время."""
+
+
+class ValidationFailure(RuntimeError):
+    """Ответ модели не прошёл валидацию (JSON, схема или цитаты)."""
+
+
+class StructuredAnswer(BaseModel):
+    """Схема ответа, которую обязана вернуть модель."""
+
+    answer: str
+    citations: list[str | int]
 
 
 @component
@@ -135,7 +155,7 @@ class PipelineWrapper(BasePipelineWrapper):
             api_key=Secret.from_token("lm-studio"),
             timeout=LLM_TIMEOUT_S,
             max_retries=0,
-            generation_kwargs={"temperature": 0.2, "max_tokens": 1024},
+            generation_kwargs={"temperature": 0.2, "max_tokens": 2048},
         )
 
         self.pipeline = Pipeline()
@@ -161,8 +181,10 @@ class PipelineWrapper(BasePipelineWrapper):
         result = self._call_with_deadline("поиск mdrack", SEARCH_TIMEOUT_S, self.retriever.run, query=question)
         return result["documents"]
 
-    def _generate(self, question: str, documents: list[Document]) -> str:
-        rendered = self.prompt_builder.run(question=question, documents=documents)["prompt"]
+    def _generate(self, question: str, documents: list[Document], feedback: str = "") -> str:
+        rendered = self.prompt_builder.run(
+            question=question, documents=documents, feedback=feedback
+        )["prompt"]
         result = self._call_with_deadline(
             "модель LM Studio", LLM_DEADLINE_S, self.generator.run, messages=rendered
         )
@@ -170,6 +192,51 @@ class PipelineWrapper(BasePipelineWrapper):
         if not replies or not replies[0].text:
             raise RuntimeError("модель вернула пустой ответ")
         return replies[0].text
+
+    @staticmethod
+    def _parse_answer(text: str) -> StructuredAnswer:
+        start = text.find("{")
+        end = text.rfind("}")
+        if start == -1 or end <= start:
+            raise ValidationFailure("в ответе модели нет JSON-объекта")
+        try:
+            data = json.loads(text[start : end + 1])
+        except json.JSONDecodeError as exc:
+            raise ValidationFailure(f"сломанный JSON: {exc}") from exc
+        try:
+            return StructuredAnswer.model_validate(data)
+        except ValidationError as exc:
+            raise ValidationFailure(f"ответ не соответствует схеме: {exc}") from exc
+
+    @staticmethod
+    def _check_citations(parsed: StructuredAnswer, documents: list[Document]) -> None:
+        if not parsed.citations:
+            raise ValidationFailure("в ответе нет цитат")
+        allowed = {str(doc.meta["chunk_id"]) for doc in documents}
+        # модель любит оборачивать chunk_id в скобки: "[chk_...]" -> "chk_..."
+        normalized = [str(c).strip().strip("[]") for c in parsed.citations]
+        unknown = [c for c in normalized if c not in allowed]
+        if unknown:
+            raise ValidationFailure(
+                f"цитаты не из выданных чанков: {', '.join(unknown)}"
+            )
+
+    def _generate_validated(self, question: str, documents: list[Document]) -> StructuredAnswer:
+        feedback = ""
+        last_error: ValidationFailure | None = None
+        for attempt in (1, 2):
+            text = self._generate(question, documents, feedback)
+            try:
+                parsed = self._parse_answer(text)
+                self._check_citations(parsed, documents)
+                return parsed
+            except ValidationFailure as exc:
+                last_error = exc
+                feedback = str(exc)
+                logger.warning(
+                    "ask_notes: валидация ответа (попытка {} из 2): {}", attempt, exc
+                )
+        raise last_error
 
     @staticmethod
     def _reason(exc: Exception) -> str:
@@ -211,21 +278,29 @@ class PipelineWrapper(BasePipelineWrapper):
                     return "В индексе не нашлось документов по этому запросу."
 
                 step = time.perf_counter()
-                answer = self._generate(question, documents)
+                parsed = self._generate_validated(question, documents)
                 llm_s = time.perf_counter() - step
 
                 logger.info(
                     "ask_notes: ответ за {:.1f} с (попытка {}, поиск {:.1f} с, "
-                    "генерация {:.1f} с, чанков {})",
+                    "генерация {:.1f} с, чанков {}, цитат {})",
                     time.perf_counter() - started,
                     attempt,
                     search_s,
                     llm_s,
                     len(documents),
+                    len(parsed.citations),
                 )
-                return self._with_sources(answer, documents)
+                return self._with_sources(parsed.answer, documents)
             except ValueError:
                 raise
+            except ValidationFailure as exc:
+                logger.error(
+                    "ask_notes: валидация не пройдена после повтора за {:.1f} с: {}",
+                    time.perf_counter() - started,
+                    exc,
+                )
+                return FALLBACK_MESSAGE.format(reason=self._reason(exc))
             except Exception as exc:
                 last_error = exc
                 if attempt == MAX_ATTEMPTS:
