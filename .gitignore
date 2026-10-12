@@ -13,3 +13,7 @@ Thumbs.db
 # Логи MCP-сервера
 mcp_server.log
 mcp_server.err
+
+# eval: логи прогонов
+eval/run.log
+eval/run.err.log

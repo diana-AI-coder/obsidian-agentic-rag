@@ -1,0 +1,87 @@
+{
+  "summary": {
+    "generated_at": "2026-10-12T19:03:25",
+    "model": "google/gemma-4-e4b",
+    "judge_model": "google/gemma-4-e4b",
+    "questions": 2,
+    "positives": 2,
+    "negatives": 0,
+    "retrieval_hit_rate": 1.0,
+    "cited_hit_rate": 1.0,
+    "refusal_ok_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "supported_rate": 0.0,
+    "judge_errors": 2,
+    "pipeline_prompt_tokens": 4640,
+    "pipeline_completion_tokens": 1570,
+    "judge_prompt_tokens": 715,
+    "judge_completion_tokens": 1024,
+    "avg_elapsed_s": 56.9,
+    "total_elapsed_s": 113.8
+  },
+  "results": [
+    {
+      "id": "p01",
+      "type": "positive",
+      "question": "Как установить OpenCode CLI?",
+      "expected_answer": "Команда установки: npm i -g opencode-ai (глобальная установка через npm).",
+      "expected_source": "homework/HW12_OpenCode_PolzaAI/для_домашки/командa установки open code.md",
+      "answer": "Для установки OpenCode CLI необходимо выполнить следующие шаги:\n\n1. Убедитесь, что у вас установлен Node.js и он доступен из терминала.\n2. Если Node.js не установлен, установите актуальную стабильную версию и откройте новый терминал.\n3. Выполните команду для глобальной установки OpenCode CLI: `npm i -g opencode-ai` [chk_736985ba4292] [chk_a6ca0e37d082].\n4. После установки проверьте, что CLI доступен в терминале; если команда не определяется сразу, полностью закройте и снова откройте терминал [chk_736985ba4292].",
+      "cited_sources": [
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/домашка12.md",
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/командa установки open code.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/домашка12.md",
+        "homework/HW13/Занятие №15 - Opencode Cli Ч2 Ии622 - Автонаполнение Obsidian.md",
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/командa установки open code.md",
+        "homework/HW14_Remotion/Занятие №15 - Opencode Cli Ч2 Ии622 - Автонаполнение Obsidian.md",
+        "homework/УРОКИ_13/Занятие №15 - Opencode Cli Ч2 Ии622 - Автонаполнение Obsidian.md",
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/ссылка для документации open code.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 60.4,
+      "prompt_tokens": 2373,
+      "completion_tokens": 824,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "judge_error",
+        "reason": "нет JSON в ответе судьи",
+        "prompt_tokens": 369,
+        "completion_tokens": 512
+      }
+    },
+    {
+      "id": "p02",
+      "type": "positive",
+      "question": "Какие композиции есть в проекте HW14 по Remotion?",
+      "expected_answer": "Две композиции: YouTubePreview (превью для YouTube-ролика) и ThesesSlide (слайд с тезисами).",
+      "expected_source": "homework/HW14_Remotion/README.md",
+      "answer": "В проекте HW14 по Remotion предусмотрено две композиции:\n\n1. **YouTubePreview** — превью для YouTube-ролика, которое включает заголовок, подзаголовок, блок под скриншот и декоративную плашку-бейджем [chk_09ee8574c5d6].\n2. **ThesesSlide** — слайд с тезисами, который содержит крупный заголовок, четыре тезиса с нумерацией и декоративные элементы [chk_09ee8574c5d6].",
+      "cited_sources": [
+        "homework/HW14_Remotion/README.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW14_Remotion/README.md",
+        "homework/домашки/домашка14.md",
+        "homework/HW14_Remotion/домашка14_копия.md",
+        "homework/домашки/домашка14.md",
+        "homework/HW14_Remotion/домашка14_копия.md",
+        "homework/HW14_Remotion/домашка14_копия.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 53.4,
+      "prompt_tokens": 2267,
+      "completion_tokens": 746,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "judge_error",
+        "reason": "нет JSON в ответе судьи",
+        "prompt_tokens": 346,
+        "completion_tokens": 512
+      }
+    }
+  ]
+}

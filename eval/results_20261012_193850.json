@@ -1,0 +1,636 @@
+{
+  "summary": {
+    "generated_at": "2026-10-12T19:38:50",
+    "model": "google/gemma-4-e4b",
+    "judge_model": "google/gemma-4-e4b",
+    "questions": 20,
+    "positives": 16,
+    "negatives": 4,
+    "retrieval_hit_rate": 0.812,
+    "cited_hit_rate": 0.75,
+    "refusal_ok_rate": 1.0,
+    "hallucination_rate": 0.2,
+    "supported_rate": 0.4,
+    "judge_errors": 0,
+    "pipeline_prompt_tokens": 53932,
+    "pipeline_completion_tokens": 21615,
+    "judge_prompt_tokens": 6416,
+    "judge_completion_tokens": 13159,
+    "avg_elapsed_s": 66.9,
+    "total_elapsed_s": 1338.5
+  },
+  "results": [
+    {
+      "id": "p01",
+      "type": "positive",
+      "question": "Как установить OpenCode CLI?",
+      "expected_answer": "Команда установки: npm i -g opencode-ai (глобальная установка через npm).",
+      "expected_source": "homework/HW12_OpenCode_PolzaAI/для_домашки/командa установки open code.md",
+      "answer": "Для установки OpenCode CLI необходимо выполнить следующие шаги:\n\n1. Убедитесь, что у вас установлен Node.js и он доступен из терминала [chk_736985ba4292]. Если нет — установите актуальную стабильную версию и откройте новый терминал.\n2. Установите OpenCode CLI глобально с помощью команды: `npm i -g opencode-ai` [chk_736985ba4292], [chk_a6ca0e37d082].\n3. После установки проверьте, что CLI доступен в терминале; если команда не определяется сразу, полностью закройте и снова откройте терминал.\n4. Найдите и установите OpenCode Desktop, а затем убедитесь, что приложение запускается без ошибок [chk_736985ba4292].",
+      "cited_sources": [
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/домашка12.md",
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/командa установки open code.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW13/Занятие №15 - Opencode Cli Ч2 Ии622 - Автонаполнение Obsidian.md",
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/домашка12.md",
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/командa установки open code.md",
+        "homework/HW14_Remotion/Занятие №15 - Opencode Cli Ч2 Ии622 - Автонаполнение Obsidian.md",
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/ссылка для документации open code.md",
+        "homework/УРОКИ_13/Занятие №15 - Opencode Cli Ч2 Ии622 - Автонаполнение Obsidian.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 65.3,
+      "prompt_tokens": 2373,
+      "completion_tokens": 1062,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "partial",
+        "reason": "Основной факт (команда установки) совпадает с эталоном, но ассистент добавил много лишних шагов и инструкций (проверка Node.js, установка OpenCode Desktop), которых нет в эталонном ответе.",
+        "raw": "",
+        "prompt_tokens": 400,
+        "completion_tokens": 535
+      }
+    },
+    {
+      "id": "p02",
+      "type": "positive",
+      "question": "Какие композиции есть в проекте HW14 по Remotion?",
+      "expected_answer": "Две композиции: YouTubePreview (превью для YouTube-ролика) и ThesesSlide (слайд с тезисами).",
+      "expected_source": "homework/HW14_Remotion/README.md",
+      "answer": "В проекте HW14 по Remotion предусмотрены две композиции:\n\n1. **YouTubePreview**: Это превью для YouTube-ролика, которое включает заголовок, подзаголовок, блок под скриншот и декоративную плашку-бейджем [chk_09ee8574c5d6].\n2. **ThesesSlide**: Слайд с тезисами, который состоит из крупного заголовка, четырех тезисов с нумерацией и декоративных элементов [chk_09ee8574c5d6].",
+      "cited_sources": [
+        "homework/HW14_Remotion/README.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW14_Remotion/README.md",
+        "homework/домашки/домашка14.md",
+        "homework/HW14_Remotion/домашка14_копия.md",
+        "homework/домашки/домашка14.md",
+        "homework/HW14_Remotion/домашка14_копия.md",
+        "homework/HW14_Remotion/домашка14_копия.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 52.5,
+      "prompt_tokens": 2267,
+      "completion_tokens": 726,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "partial",
+        "reason": "Ассистент правильно называет две композиции и их основное назначение, но добавляет избыточные детали о структуре каждой композиции (например, \"включает заголовок, подзаголовок...\", \"четырех тезисов с нумерацией...\"), которые не указаны в эталоне.",
+        "raw": "",
+        "prompt_tokens": 347,
+        "completion_tokens": 644
+      }
+    },
+    {
+      "id": "p03",
+      "type": "positive",
+      "question": "Как отрендерить композицию YouTubePreview в видеофайл?",
+      "expected_answer": "Командой npx remotion render YouTubePreview out/preview.mp4.",
+      "expected_source": "homework/HW14_Remotion/README.md",
+      "answer": "Для рендеринга композиции YouTubePreview в видеофайл необходимо выполнить следующую команду:\n\n`npx remotion render YouTubePreview out/preview.mp4` [chk_66b27781af44]",
+      "cited_sources": [
+        "homework/HW14_Remotion/README.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW14_Remotion/README.md",
+        "homework/HW14_Remotion/README.md",
+        "homework/HW14_Remotion/README.md",
+        "homework/HW14_Remotion/README.md",
+        "homework/HW14_Remotion/README.md",
+        "homework/домашки/ИИ622 HW №4.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 41.9,
+      "prompt_tokens": 1027,
+      "completion_tokens": 482,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "supported",
+        "reason": "Ответ содержит точную команду, указанную в эталоне.",
+        "raw": "",
+        "prompt_tokens": 265,
+        "completion_tokens": 420
+      }
+    },
+    {
+      "id": "p04",
+      "type": "positive",
+      "question": "Из каких полей состоит фронтматтер SKILL.md?",
+      "expected_answer": "Из полей name (идентификатор навыка) и description (описание что делает и когда использовать), YAML в начале файла.",
+      "expected_source": "homework/HW11/SKILL.md",
+      "answer": "Фронтматтер в `SKILL.md` представляет собой YAML-фронтматтера (`--- ... ---`) и состоит из полей `name` (идентификатор) и `description` (когда вызывать, что делает). Это ключевой элемент для триггеринга навыка [chk_4f62ac712ad1].",
+      "cited_sources": [
+        "homework/HW11/01_anthropic_skill_structure.md"
+      ],
+      "retrieved_sources": [
+        "homework/домашки/домашка10.md",
+        "homework/дз_10/ИИ622 HW №10.md",
+        "homework/HW11/01_anthropic_skill_structure.md",
+        "homework/дз_10/ИИ622 HW №10.md",
+        "homework/HW11/01_anthropic_skill_structure.md",
+        "homework/домашки/домашка10.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 57.6,
+      "prompt_tokens": 2583,
+      "completion_tokens": 784,
+      "retrieval_hit": false,
+      "cited_hit": false,
+      "judge": {
+        "verdict": "supported",
+        "reason": "Ответ полностью совпадает с эталоном по факту, называя необходимые поля name и description.",
+        "raw": "",
+        "prompt_tokens": 303,
+        "completion_tokens": 589
+      }
+    },
+    {
+      "id": "p05",
+      "type": "positive",
+      "question": "В чём ключевая идея универсального skill-creator?",
+      "expected_answer": "Ценность не в скриптах, а в систематизированном процессе из 7 шагов (понять задачу, уточнить детали, написать черновик, протестировать, показать, улучшить, повторять), универсальном для любого кодового агента.",
+      "expected_source": "homework/HW11/03_universal_skill_design_ru.md",
+      "answer": "Ключевая идея универсального skill-creator заключается в том, что это инструкция для любого кодового агента, которая помогает пользователю создать новый навык от начала до конца [chk_db74484a0a8d]. Основная ценность этого процесса — не в скриптах или подагентах, а в систематизированном процессе: понять потребность пользователя, узнать детали через вопросы, написать черновик, протестировать на конкретных примерах, показать результаты и улучшать навык на основе отзывов до достижения хорошего результата [chk_db74484a0a8d]. Этот процесс универсален и строится на последовательных шагах, которые агент выполняет прямо в диалоге, а не на автоматизации через скрипты или параллельные агенты [chk_c49a9c8428bb], [chk_080c2aaa6c15].",
+      "cited_sources": [
+        "homework/HW11/03_universal_skill_design_ru.md",
+        "homework/HW11/03_universal_skill_design_ru.md",
+        "homework/HW11/03_universal_skill_design_ru.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW11/03_universal_skill_design_ru.md",
+        "homework/HW11/03_universal_skill_design_ru.md",
+        "homework/HW11/03_universal_skill_design_ru.md",
+        "homework/домашки/домашка11.md",
+        "homework/HW11/03_universal_skill_design_ru.md",
+        "homework/домашки/домашка11.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 121.7,
+      "prompt_tokens": 4443,
+      "completion_tokens": 2421,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "supported",
+        "reason": "Ответ полностью совпадает с эталоном по факту: ценность не в скриптах, а в систематизированном процессе, который универсален для кодового агента.",
+        "raw": "",
+        "prompt_tokens": 447,
+        "completion_tokens": 786
+      }
+    },
+    {
+      "id": "p06",
+      "type": "positive",
+      "question": "Из каких частей состоит Outline и что делает контейнер shadowbox?",
+      "expected_answer": "shadowbox это основной Outline Server в Docker-контейнере, watchtower занимается автообновлением, Manager управляет сервером, Client подключает пользователей.",
+      "expected_source": "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md",
+      "answer": "Outline состоит из нескольких компонентов: Ubuntu VPS (арендованный сервер), SSH (для входа администратора на сервер), Docker (для запуска контейнеров Outline), shadowbox, watchtower, Outline Manager (на компьютере администратора для управления сервером и ключами) и Outline Client (на устройствах пользователей для подключения по access key). Контейнер `shadowbox` выполняет роль основного Outline Server [chk_86fb702452f2, chk_5066a01f1026].",
+      "cited_sources": [],
+      "retrieved_sources": [
+        "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md",
+        "homework/HW17/ИИ622 HW №17.md",
+        "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md",
+        "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md",
+        "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md",
+        "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 100.5,
+      "prompt_tokens": 3748,
+      "completion_tokens": 2067,
+      "retrieval_hit": true,
+      "cited_hit": false,
+      "judge": {
+        "verdict": "supported",
+        "reason": "Ответ полностью совпадает по факту с эталоном: shadowbox — основной Outline Server; Manager управляет сервером; Client подключает пользователей. Ассистент также корректно перечисляет другие компоненты.",
+        "raw": "",
+        "prompt_tokens": 346,
+        "completion_tokens": 855
+      }
+    },
+    {
+      "id": "p07",
+      "type": "positive",
+      "question": "Можно ли отправлять Management JSON пользователям Outline вместо access key?",
+      "expected_answer": "Нельзя, Management JSON отправлять пользователям нельзя, пользователям выдаются access key, JSON остаётся у администратора в Outline Manager.",
+      "expected_source": "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md",
+      "answer": "Нет, Management JSON нельзя отправлять пользователям Outline. Этот JSON предназначен только для администратора и используется для доступа к управлению сервером в Outline Manager. Пользователям вместо него выдаются отдельные access key [chk_4c88c7a40793] [chk_29015bff901e] [chk_a6ef00d3e143].",
+      "cited_sources": [
+        "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md",
+        "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md",
+        "homework/HW17/ИИ622 HW №17.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md",
+        "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md",
+        "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md",
+        "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md",
+        "homework/HW17/ИИ622 HW №17.md",
+        "homework/HW17/ИИ622 HW №17.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 49.5,
+      "prompt_tokens": 1743,
+      "completion_tokens": 633,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "supported",
+        "reason": "Ответ полностью соответствует эталону: нельзя отправлять Management JSON пользователям; он предназначен для администратора в Outline Manager, а пользователям выдаются access key.",
+        "raw": "",
+        "prompt_tokens": 311,
+        "completion_tokens": 626
+      }
+    },
+    {
+      "id": "p08",
+      "type": "positive",
+      "question": "Сколько слайдов и какая общая длительность в раскадровке видео HW15?",
+      "expected_answer": "11 слайдов, общая длительность около 3 минут (180 секунд).",
+      "expected_source": "homework/HW15/03_storyboard.md",
+      "answer": "Минимальное количество слайдов в раскадровке составляет 10 слайдов [chk_7c76efb51bcc, chk_523f96da3566, chk_fb4ef5e04a4a, chk_bddcdb2efff6]. При составлении раскадровки необходимо указывать примерное время показа для каждого слайда [chk_fb4ef5e04a4a, chk_bddcdb2efff6], однако в документах не указана общая требуемая длительность видео.",
+      "cited_sources": [],
+      "retrieved_sources": [
+        "homework/ИИ622 HW №15.md",
+        "homework/ИИ622 HW №15.md",
+        "homework/HW15/ИИ622 HW №15.md",
+        "homework/HW15/ИИ622 HW №15.md",
+        "homework/HW15/ИИ622 HW №15.md",
+        "homework/ИИ622 HW №15.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 67.1,
+      "prompt_tokens": 2835,
+      "completion_tokens": 1064,
+      "retrieval_hit": false,
+      "cited_hit": false,
+      "judge": {
+        "verdict": "partial",
+        "reason": "Ассистент дает другое количество слайдов (10 вместо 11) и противоречит эталону по общей длительности, утверждая, что она не указана в документах, хотя эталон предоставляет конкретное значение.",
+        "raw": "",
+        "prompt_tokens": 351,
+        "completion_tokens": 730
+      }
+    },
+    {
+      "id": "p09",
+      "type": "positive",
+      "question": "Какое контекстное окно у модели Mistral Small 4?",
+      "expected_answer": "262 144 токена (стоимость входа 0.15 доллара за 1M токенов).",
+      "expected_source": "homework/HW12_OpenCode_PolzaAI/01_models_research.md",
+      "answer": "Контекстное окно модели Mistral Small 4 составляет 262,144 токена [chk_b6d6ef08d452] [chk_e9e9a4fc4b9a] [chk_503eff5c79ca].",
+      "cited_sources": [
+        "homework/HW12_OpenCode_PolzaAI/01_models_research.md",
+        "homework/HW12_PolzaAI/01_models_research.md",
+        "homework/HW12_OpenCode_PolzaAI/01_models_research.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW12_OpenCode_PolzaAI/01_models_research.md",
+        "homework/HW12_PolzaAI/01_models_research.md",
+        "homework/HW12_OpenCode_PolzaAI/01_models_research.md",
+        "homework/домашки/ИИ622 HW №3.md",
+        "homework/домашки/ИИ622 HW №6.md",
+        "homework/домашки/ИИ622 HW №3.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 50.3,
+      "prompt_tokens": 1628,
+      "completion_tokens": 667,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "partial",
+        "reason": "Контекстное окно указано верно, но ассистент проигнорировал информацию о стоимости входа (0.15 доллара за 1M токенов), которая была в эталоне.",
+        "raw": "",
+        "prompt_tokens": 293,
+        "completion_tokens": 567
+      }
+    },
+    {
+      "id": "p10",
+      "type": "positive",
+      "question": "Сколько стоят вход и выход токенов у Gemini 3.1 Pro Preview?",
+      "expected_answer": "Вход 2.00 доллара за 1M токенов, выход 12.00 долларов за 1M токенов.",
+      "expected_source": "homework/HW12_OpenCode_PolzaAI/01_models_research.md",
+      "answer": "Для Gemini 3.1 Pro Preview стоимость входных токенов составляет $2.00 / 1M токенов, а выходных токенов — $12.00 / 1M токенов [chk_dcc1cea4e7e3] [chk_dc0bac550677] [chk_7a2dde4c4bc9].",
+      "cited_sources": [
+        "homework/HW12_OpenCode_PolzaAI/01_models_research.md",
+        "homework/HW12_PolzaAI/01_models_research.md",
+        "homework/HW12_PolzaAI/01_models_research.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW12_OpenCode_PolzaAI/01_models_research.md",
+        "homework/HW12_PolzaAI/01_models_research.md",
+        "homework/HW12_OpenCode_PolzaAI/01_models_research.md",
+        "homework/HW12_PolzaAI/01_models_research.md",
+        "homework/HW12_OpenCode_PolzaAI/01_models_research.md",
+        "homework/HW12_PolzaAI/01_models_research.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 53.6,
+      "prompt_tokens": 1888,
+      "completion_tokens": 786,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "supported",
+        "reason": "Ответ полностью совпадает с эталоном по факту: вход 2.00 доллара за 1M токенов, выход 12.00 долларов за 1M токенов.",
+        "raw": "",
+        "prompt_tokens": 321,
+        "completion_tokens": 585
+      }
+    },
+    {
+      "id": "p11",
+      "type": "positive",
+      "question": "Какие два порта использует двухпортовая конфигурация 3proxy для SOCKS5?",
+      "expected_answer": "51080/tcp SOCKS5 с логином и паролем для Telegram и клиентов с auth, 51081/tcp SOCKS5 без пароля только для разрешённых IP (Chatbox).",
+      "expected_source": "homework/HW17/proxy_3_proxy_two_ports_chatbox_telegram_updated_guide.md",
+      "answer": "Двухпортовая конфигурация 3proxy использует следующие порты для SOCKS5:\n\n*   `51080/tcp`: Для режима SOCKS5 с логином и паролем (подходит для Telegram, curl, Python и клиентов с аутентификацией) [chk_1f5ba9e811ed].\n*   `51081/tcp`: Для режима SOCKS5 без логина и пароля, но только для разрешённых IP (подходит для Chatbox и похожего софта) [chk_1f5ba9e811ed].",
+      "cited_sources": [
+        "homework/HW17/proxy_3_proxy_two_ports_chatbox_telegram_updated_guide.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW17/proxy_3_proxy_two_ports_chatbox_telegram_updated_guide.md",
+        "homework/HW17/proxy_3_proxy_two_ports_chatbox_telegram_updated_guide.md",
+        "homework/HW17/proxy_3_proxy_two_ports_chatbox_telegram_updated_guide.md",
+        "homework/HW17/proxy_3_proxy_two_ports_chatbox_telegram_updated_guide.md",
+        "homework/HW17/proxy_3_proxy_two_ports_chatbox_telegram_updated_guide.md",
+        "homework/HW17/proxy_3_proxy_two_ports_chatbox_telegram_updated_guide.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 46.1,
+      "prompt_tokens": 1135,
+      "completion_tokens": 589,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "supported",
+        "reason": "Ответ полностью совпадает с эталоном по фактам: указаны оба порта (51080 и 51081), их протокол SOCKS5, а также условия использования (с/без аутентификации и для каких клиентов).",
+        "raw": "",
+        "prompt_tokens": 381,
+        "completion_tokens": 600
+      }
+    },
+    {
+      "id": "p12",
+      "type": "positive",
+      "question": "Что запрещают правила git-safety про состояние HEAD?",
+      "expected_answer": "Никогда не коммитить из состояния detached HEAD, а также коммитить, не определив текущую ветку явно.",
+      "expected_source": "homework/instructions/WORKFLOW.git-safety.instructions.md",
+      "answer": "Правила требуют обнаружения Detached HEAD и запрещают коммитить изменения до тех пор, пока не будет создан или переключен на реальную ветку. Если обнаружен Detached HEAD, агент должен остановить работу и сообщить об этом. Кроме того, агент не должен создавать ветку для восстановления без одобрения человека, если только пользователь явно не разрешил автономное создание таких веток [chk_3d8e27b62c25].",
+      "cited_sources": [
+        "homework/instructions/WORKFLOW.git-safety.instructions.md"
+      ],
+      "retrieved_sources": [
+        "homework/`01_final_prompt.md",
+        "homework/ИИ622_HW21/ИИ622_HW21_АхметвалиеваДиана/AGENTS.md",
+        "homework/ИИ622_HW21/AGENTS.md",
+        "homework/`01_final_prompt.md",
+        "homework/ИИ622_HW21_АхметвалиеваДиана/AGENTS.md",
+        "homework/instructions/WORKFLOW.git-safety.instructions.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 50.7,
+      "prompt_tokens": 1656,
+      "completion_tokens": 659,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "partial",
+        "reason": "Ассистент правильно указывает на запрет коммита из Detached HEAD, но добавляет много лишних деталей о поведении агента и правилах создания веток для восстановления, которые не содержатся в эталоне.",
+        "raw": "",
+        "prompt_tokens": 317,
+        "completion_tokens": 752
+      }
+    },
+    {
+      "id": "p13",
+      "type": "positive",
+      "question": "Сколько стоит курс «Волшебная кисть» и для какого возраста он в студии НатВик?",
+      "expected_answer": "4000 рублей в месяц, возраст 5-7 лет, длительность занятия 60 минут.",
+      "expected_source": "homework/`01_final_prompt.md",
+      "answer": "Курс «Волшебная кисть» предназначен для возраста 5-7 лет и стоит 4000 рублей в месяц. [chk_d92fa2429522] [chk_cf1a5241e052] [chk_e7251b131be2]",
+      "cited_sources": [
+        "homework/`01_final_prompt.md",
+        "homework/`01_final_prompt.md",
+        "homework/`01_final_prompt.md"
+      ],
+      "retrieved_sources": [
+        "homework/`01_final_prompt.md",
+        "homework/`01_final_prompt.md",
+        "homework/`01_final_prompt.md",
+        "homework/`02_chat_requests.md",
+        "homework/`01_final_prompt.md",
+        "homework/`01_final_prompt.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 53.0,
+      "prompt_tokens": 2480,
+      "completion_tokens": 713,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "partial",
+        "reason": "Ассистент верно указал стоимость и возраст, но упустил информацию о длительности занятия (60 минут), которая была в эталоне.",
+        "raw": "",
+        "prompt_tokens": 306,
+        "completion_tokens": 582
+      }
+    },
+    {
+      "id": "p14",
+      "type": "positive",
+      "question": "Какая общая длительность сценария озвучки видео HW15?",
+      "expected_answer": "148 секунд (около 2 минут 28 секунд).",
+      "expected_source": "homework/HW15/04_voiceover_script.md",
+      "answer": "В предоставленных документах не указана конкретная общая длительность сценария озвучки видео HW15. Однако в требованиях к созданию сценария подчеркивается, что общая длительность озвучки должна соответствовать сумме времён показа слайдов из раскадровки [chk_dcc46f8edeaf] [chk_86386c66a269] и согласована с раскадровкой [chk_7c76efb51bcc] [chk_523f96da3566].",
+      "cited_sources": [
+        "homework/ИИ622 HW №15.md",
+        "homework/HW15/ИИ622 HW №15.md",
+        "homework/ИИ622 HW №15.md",
+        "homework/HW15/ИИ622 HW №15.md"
+      ],
+      "retrieved_sources": [
+        "homework/ИИ622 HW №15.md",
+        "homework/HW15/ИИ622 HW №15.md",
+        "homework/ИИ622 HW №15.md",
+        "homework/HW15/ИИ622 HW №15.md",
+        "homework/ИИ622 HW №15.md",
+        "homework/HW15/ИИ622 HW №15.md"
+      ],
+      "refusal": true,
+      "elapsed_s": 61.2,
+      "prompt_tokens": 2721,
+      "completion_tokens": 901,
+      "retrieval_hit": false,
+      "cited_hit": false,
+      "judge": {
+        "verdict": "hallucinated",
+        "reason": "Ассистент не предоставил конкретный факт (148 секунд), указанный в эталоне, а вместо этого дал общие инструкции по расчету длительности.",
+        "raw": "",
+        "prompt_tokens": 341,
+        "completion_tokens": 622
+      }
+    },
+    {
+      "id": "p15",
+      "type": "positive",
+      "question": "Из чего состоит пакет материалов для домашнего задания HW15?",
+      "expected_answer": "Из markdown-файла ИИ622 HW №15.md и папки со скриншотами (.webp) процесса подключения OpenAI к OpenCode, всего 8 скриншотов.",
+      "expected_source": "homework/HW15/01_materials_analysis.md",
+      "answer": "Пакет материалов от преподавателя для домашнего задания HW №15 состоит из двух элементов: Markdown-файл `ИИ622 HW №15.md` и папка `Open Code подключение GPT подписки/`, которая содержит 8 скриншотов (`.webp`), демонстрирующих пошаговый процесс подключения OpenAI (GPT) к OpenCode [chk_2d4ca0b05677] [chk_1413409016d1]. Кроме того, в пакете могут находиться следующие материалы: примеры конфигов OpenCode (релевантные), скриншоты с текстовыми описаниями, материалы, относящиеся к Qwen, фрагменты с указаниями по capabilities и модальностям, данные про миллисекунды для MCP-инструментов, а также прочие документы [chk_3f758dd95da7].",
+      "cited_sources": [
+        "homework/HW15/01_materials_analysis.md",
+        "homework/HW15/ИИ622_HW15_АхметвалиеваДиана/01_materials_analysis.md",
+        "homework/ИИ622 HW №15.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW15/01_materials_analysis.md",
+        "homework/HW15/ИИ622_HW15_АхметвалиеваДиана/01_materials_analysis.md",
+        "homework/ИИ622 HW №15.md",
+        "homework/HW15/ИИ622_HW15_АхметвалиеваДиана/01_materials_analysis.md",
+        "homework/HW15/01_materials_analysis.md",
+        "homework/ИИ622 HW №15.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 66.5,
+      "prompt_tokens": 1662,
+      "completion_tokens": 1105,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "partial",
+        "reason": "Ассистент верно называет два основных элемента (MD-файл и папка со скриншотами), но добавляет слишком много лишней информации о потенциальном содержимом пакета, которая не соответствует эталону.",
+        "raw": "",
+        "prompt_tokens": 433,
+        "completion_tokens": 739
+      }
+    },
+    {
+      "id": "p16",
+      "type": "positive",
+      "question": "Какая задача в TODO-плане развития архитектуры связана с командами bash?",
+      "expected_answer": "Провести анализ безопасности выполнения команд bash.",
+      "expected_source": "homework/HW13/03_todo_plan.md",
+      "answer": "В TODO-плане развития архитектуры задач связана с командами bash — это «Провести анализ безопасности выполнения команд bash» [chk_0cfa52c10664].",
+      "cited_sources": [
+        "homework/HW13/03_todo_plan.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW13/03_todo_plan.md",
+        "homework/ИИ622 HW №18.md",
+        "homework/HW13/.opencode/skills/knowledge-manager/SKILL.md",
+        "homework/HW18/ИИ622 HW №18.md",
+        "homework/ИИ622 HW №21.md",
+        "homework/HW18/ИИ622_HW18_АхметвалиеваДиана/todo_or_checklists.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 57.6,
+      "prompt_tokens": 1765,
+      "completion_tokens": 824,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "supported",
+        "reason": "Ответ ассистента полностью совпадает с эталонным фактом и отвечает на вопрос.",
+        "raw": "",
+        "prompt_tokens": 249,
+        "completion_tokens": 384
+      }
+    },
+    {
+      "id": "n01",
+      "type": "negative",
+      "question": "Что требует ГОСТ 22.133330.2011 к системам теплоснабжения?",
+      "expected_answer": "Ответа в базе нет, ожидается отказ или фолбэк без выдуманных требований.",
+      "expected_source": null,
+      "answer": "Сервис временно недоступен: в ответе нет цитат. Попробуйте повторить запрос чуть позже.",
+      "cited_sources": [],
+      "retrieved_sources": [],
+      "refusal": true,
+      "elapsed_s": 95.5,
+      "prompt_tokens": 5557,
+      "completion_tokens": 1708,
+      "refusal_ok": true,
+      "judge": {
+        "verdict": "refusal",
+        "reason": "Ассистент не предоставил фактическую информацию по ГОСТ, а вместо этого выдал сообщение об ошибке/недоступности сервиса. Это соответствует требованию отказа от ответа при отсутствии данных в базе.",
+        "raw": "",
+        "prompt_tokens": 256,
+        "completion_tokens": 751
+      }
+    },
+    {
+      "id": "n02",
+      "type": "negative",
+      "question": "Какой медицинский протокол лечения гипертонии используется в нашей клинике?",
+      "expected_answer": "Ответа в базе нет, ожидается отказ или фолбэк без выдуманных протоколов.",
+      "expected_source": null,
+      "answer": "Сервис временно недоступен: в ответе нет цитат. Попробуйте повторить запрос чуть позже.",
+      "cited_sources": [],
+      "retrieved_sources": [],
+      "refusal": true,
+      "elapsed_s": 67.6,
+      "prompt_tokens": 2493,
+      "completion_tokens": 1141,
+      "refusal_ok": true,
+      "judge": {
+        "verdict": "hallucinated",
+        "reason": "Ассистент не предоставил требуемый информационный отказ (указание на отсутствие данных), а вместо этого выдал техническое сообщение об ошибке.",
+        "raw": "",
+        "prompt_tokens": 247,
+        "completion_tokens": 816
+      }
+    },
+    {
+      "id": "n03",
+      "type": "negative",
+      "question": "Приведи образец договора аренды квартиры с фиксированной ставкой.",
+      "expected_answer": "Ответа в базе нет, ожидается отказ или фолбэк без выдуманных формулировок.",
+      "expected_source": null,
+      "answer": "Сервис временно недоступен: в ответе нет цитат. Попробуйте повторить запрос чуть позже.",
+      "cited_sources": [],
+      "retrieved_sources": [],
+      "refusal": true,
+      "elapsed_s": 75.6,
+      "prompt_tokens": 4495,
+      "completion_tokens": 1347,
+      "refusal_ok": true,
+      "judge": {
+        "verdict": "hallucinated",
+        "reason": "Ассистент выдал техническое сообщение об ошибке («Сервис временно недоступен») вместо ожидаемого отказа на основании отсутствия данных в базе знаний, что является нерелевантным и некорректным ответом.",
+        "raw": "",
+        "prompt_tokens": 248,
+        "completion_tokens": 810
+      }
+    },
+    {
+      "id": "n04",
+      "type": "negative",
+      "question": "Какие требования пожарной безопасности по СНиП 21.01.99 действуют для складов?",
+      "expected_answer": "Ответа в базе нет, ожидается отказ или фолбэк без выдуманных требований.",
+      "expected_source": null,
+      "answer": "Сервис временно недоступен: в ответе нет цитат. Попробуйте повторить запрос чуть позже.",
+      "cited_sources": [],
+      "retrieved_sources": [],
+      "refusal": true,
+      "elapsed_s": 104.7,
+      "prompt_tokens": 5433,
+      "completion_tokens": 1936,
+      "refusal_ok": true,
+      "judge": {
+        "verdict": "hallucinated",
+        "reason": "Ассистент не предоставил ни отказ, ни информацию о невозможности ответа; он вывел техническое системное сообщение об ошибке.",
+        "raw": "",
+        "prompt_tokens": 254,
+        "completion_tokens": 766
+      }
+    }
+  ]
+}

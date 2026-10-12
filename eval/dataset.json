@@ -1,0 +1,142 @@
+[
+  {
+    "id": "p01",
+    "type": "positive",
+    "question": "Как установить OpenCode CLI?",
+    "expected_answer": "Команда установки: npm i -g opencode-ai (глобальная установка через npm).",
+    "expected_source": "homework/HW12_OpenCode_PolzaAI/для_домашки/командa установки open code.md"
+  },
+  {
+    "id": "p02",
+    "type": "positive",
+    "question": "Какие композиции есть в проекте HW14 по Remotion?",
+    "expected_answer": "Две композиции: YouTubePreview (превью для YouTube-ролика) и ThesesSlide (слайд с тезисами).",
+    "expected_source": "homework/HW14_Remotion/README.md"
+  },
+  {
+    "id": "p03",
+    "type": "positive",
+    "question": "Как отрендерить композицию YouTubePreview в видеофайл?",
+    "expected_answer": "Командой npx remotion render YouTubePreview out/preview.mp4.",
+    "expected_source": "homework/HW14_Remotion/README.md"
+  },
+  {
+    "id": "p04",
+    "type": "positive",
+    "question": "Из каких полей состоит фронтматтер SKILL.md?",
+    "expected_answer": "Из полей name (идентификатор навыка) и description (описание что делает и когда использовать), YAML в начале файла.",
+    "expected_source": "homework/HW11/SKILL.md"
+  },
+  {
+    "id": "p05",
+    "type": "positive",
+    "question": "В чём ключевая идея универсального skill-creator?",
+    "expected_answer": "Ценность не в скриптах, а в систематизированном процессе из 7 шагов (понять задачу, уточнить детали, написать черновик, протестировать, показать, улучшить, повторять), универсальном для любого кодового агента.",
+    "expected_source": "homework/HW11/03_universal_skill_design_ru.md"
+  },
+  {
+    "id": "p06",
+    "type": "positive",
+    "question": "Из каких частей состоит Outline и что делает контейнер shadowbox?",
+    "expected_answer": "shadowbox это основной Outline Server в Docker-контейнере, watchtower занимается автообновлением, Manager управляет сервером, Client подключает пользователей.",
+    "expected_source": "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md"
+  },
+  {
+    "id": "p07",
+    "type": "positive",
+    "question": "Можно ли отправлять Management JSON пользователям Outline вместо access key?",
+    "expected_answer": "Нельзя, Management JSON отправлять пользователям нельзя, пользователям выдаются access key, JSON остаётся у администратора в Outline Manager.",
+    "expected_source": "homework/HW17/outline_ubuntu_vps_full_reliable_install_guide_updated.md"
+  },
+  {
+    "id": "p08",
+    "type": "positive",
+    "question": "Сколько слайдов и какая общая длительность в раскадровке видео HW15?",
+    "expected_answer": "11 слайдов, общая длительность около 3 минут (180 секунд).",
+    "expected_source": "homework/HW15/03_storyboard.md"
+  },
+  {
+    "id": "p09",
+    "type": "positive",
+    "question": "Какое контекстное окно у модели Mistral Small 4?",
+    "expected_answer": "262 144 токена (стоимость входа 0.15 доллара за 1M токенов).",
+    "expected_source": "homework/HW12_OpenCode_PolzaAI/01_models_research.md"
+  },
+  {
+    "id": "p10",
+    "type": "positive",
+    "question": "Сколько стоят вход и выход токенов у Gemini 3.1 Pro Preview?",
+    "expected_answer": "Вход 2.00 доллара за 1M токенов, выход 12.00 долларов за 1M токенов.",
+    "expected_source": "homework/HW12_OpenCode_PolzaAI/01_models_research.md"
+  },
+  {
+    "id": "p11",
+    "type": "positive",
+    "question": "Какие два порта использует двухпортовая конфигурация 3proxy для SOCKS5?",
+    "expected_answer": "51080/tcp SOCKS5 с логином и паролем для Telegram и клиентов с auth, 51081/tcp SOCKS5 без пароля только для разрешённых IP (Chatbox).",
+    "expected_source": "homework/HW17/proxy_3_proxy_two_ports_chatbox_telegram_updated_guide.md"
+  },
+  {
+    "id": "p12",
+    "type": "positive",
+    "question": "Что запрещают правила git-safety про состояние HEAD?",
+    "expected_answer": "Никогда не коммитить из состояния detached HEAD, а также коммитить, не определив текущую ветку явно.",
+    "expected_source": "homework/instructions/WORKFLOW.git-safety.instructions.md"
+  },
+  {
+    "id": "p13",
+    "type": "positive",
+    "question": "Сколько стоит курс «Волшебная кисть» и для какого возраста он в студии НатВик?",
+    "expected_answer": "4000 рублей в месяц, возраст 5-7 лет, длительность занятия 60 минут.",
+    "expected_source": "homework/`01_final_prompt.md"
+  },
+  {
+    "id": "p14",
+    "type": "positive",
+    "question": "Какая общая длительность сценария озвучки видео HW15?",
+    "expected_answer": "148 секунд (около 2 минут 28 секунд).",
+    "expected_source": "homework/HW15/04_voiceover_script.md"
+  },
+  {
+    "id": "p15",
+    "type": "positive",
+    "question": "Из чего состоит пакет материалов для домашнего задания HW15?",
+    "expected_answer": "Из markdown-файла ИИ622 HW №15.md и папки со скриншотами (.webp) процесса подключения OpenAI к OpenCode, всего 8 скриншотов.",
+    "expected_source": "homework/HW15/01_materials_analysis.md"
+  },
+  {
+    "id": "p16",
+    "type": "positive",
+    "question": "Какая задача в TODO-плане развития архитектуры связана с командами bash?",
+    "expected_answer": "Провести анализ безопасности выполнения команд bash.",
+    "expected_source": "homework/HW13/03_todo_plan.md"
+  },
+  {
+    "id": "n01",
+    "type": "negative",
+    "question": "Что требует ГОСТ 22.133330.2011 к системам теплоснабжения?",
+    "expected_answer": "Ответа в базе нет, ожидается отказ или фолбэк без выдуманных требований.",
+    "expected_source": null
+  },
+  {
+    "id": "n02",
+    "type": "negative",
+    "question": "Какой медицинский протокол лечения гипертонии используется в нашей клинике?",
+    "expected_answer": "Ответа в базе нет, ожидается отказ или фолбэк без выдуманных протоколов.",
+    "expected_source": null
+  },
+  {
+    "id": "n03",
+    "type": "negative",
+    "question": "Приведи образец договора аренды квартиры с фиксированной ставкой.",
+    "expected_answer": "Ответа в базе нет, ожидается отказ или фолбэк без выдуманных формулировок.",
+    "expected_source": null
+  },
+  {
+    "id": "n04",
+    "type": "negative",
+    "question": "Какие требования пожарной безопасности по СНиП 21.01.99 действуют для складов?",
+    "expected_answer": "Ответа в базе нет, ожидается отказ или фолбэк без выдуманных требований.",
+    "expected_source": null
+  }
+]

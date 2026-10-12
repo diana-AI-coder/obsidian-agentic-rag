@@ -1,0 +1,57 @@
+{
+  "summary": {
+    "generated_at": "2026-10-12T19:06:18",
+    "model": "google/gemma-4-e4b",
+    "judge_model": "google/gemma-4-e4b",
+    "questions": 1,
+    "positives": 1,
+    "negatives": 0,
+    "retrieval_hit_rate": 1.0,
+    "cited_hit_rate": 1.0,
+    "refusal_ok_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "supported_rate": 0.0,
+    "judge_errors": 1,
+    "pipeline_prompt_tokens": 2373,
+    "pipeline_completion_tokens": 1002,
+    "judge_prompt_tokens": 433,
+    "judge_completion_tokens": 512,
+    "avg_elapsed_s": 62.4,
+    "total_elapsed_s": 62.4
+  },
+  "results": [
+    {
+      "id": "p01",
+      "type": "positive",
+      "question": "Как установить OpenCode CLI?",
+      "expected_answer": "Команда установки: npm i -g opencode-ai (глобальная установка через npm).",
+      "expected_source": "homework/HW12_OpenCode_PolzaAI/для_домашки/командa установки open code.md",
+      "answer": "Для установки OpenCode CLI необходимо выполнить следующие шаги:\n\n1. Убедитесь, что у вас установлен Node.js и он доступен из терминала [chk_736985ba4292].\n2. Если Node.js не установлен, установите актуальную стабильную версию и откройте новый терминал [chk_736985ba4292].\n3. Установите OpenCode CLI глобально с помощью команды: `npm i -g opencode-ai` [chk_736985ba4292], [chk_a6ca0e37d082].\n4. После установки проверьте доступность CLI в терминале; если команда не определяется сразу, полностью закройте и снова откройте терминал [chk_736985ba4292].\n5. Найдите и установите OpenCode Desktop, а затем убедитесь, что приложение запускается без ошибок [chk_736985ba4292].",
+      "cited_sources": [
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/домашка12.md",
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/командa установки open code.md"
+      ],
+      "retrieved_sources": [
+        "homework/HW13/Занятие №15 - Opencode Cli Ч2 Ии622 - Автонаполнение Obsidian.md",
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/домашка12.md",
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/командa установки open code.md",
+        "homework/HW14_Remotion/Занятие №15 - Opencode Cli Ч2 Ии622 - Автонаполнение Obsidian.md",
+        "homework/HW12_OpenCode_PolzaAI/для_домашки/ссылка для документации open code.md",
+        "homework/УРОКИ_13/Занятие №15 - Opencode Cli Ч2 Ии622 - Автонаполнение Obsidian.md"
+      ],
+      "refusal": false,
+      "elapsed_s": 62.4,
+      "prompt_tokens": 2373,
+      "completion_tokens": 1002,
+      "retrieval_hit": true,
+      "cited_hit": true,
+      "judge": {
+        "verdict": "judge_error",
+        "reason": "нет JSON в ответе судьи",
+        "raw": "",
+        "prompt_tokens": 433,
+        "completion_tokens": 512
+      }
+    }
+  ]
+}
