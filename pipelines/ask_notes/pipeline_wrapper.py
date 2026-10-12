@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import time
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
@@ -38,6 +39,11 @@ LLM_TIMEOUT_S = 120.0
 LLM_DEADLINE_S = LLM_TIMEOUT_S + 15.0
 MAX_ATTEMPTS = 3
 BACKOFF_BASE_S = 2.0
+
+# ADR-003: точечные идентификаторы (ГОСТ 22.133330.2011, 12.1.004-91, 34.601-90)
+# ищутся regex-экстрактором точечно, минуя токенизацию по точкам.
+IDENTIFIER_RE = re.compile(r"\b\d{2}\.\d{1,6}(?:[.-]\d{2,4}){0,2}\b")
+REGEX_HIT_LIMIT = 2
 
 T = TypeVar("T")
 
@@ -92,6 +98,26 @@ class StructuredAnswer(BaseModel):
 class MdrackRetriever:
     """Гибридный поиск (FTS5 + вектор, RRF) по глобальному индексу vault."""
 
+    @staticmethod
+    def _identifier_hits(conn, query: str) -> list[str]:
+        """Точечный FTS-поиск точечных идентификаторов из запроса (ADR-003).
+
+        Возвращает chunk_id в порядке релевантности, без дублей.
+        """
+        identifiers = list(dict.fromkeys(IDENTIFIER_RE.findall(query)))
+        if not identifiers:
+            return []
+        fts = FTSIndex(conn)
+        seen: set[str] = set()
+        ordered: list[str] = []
+        for ident in identifiers:
+            for row in fts.search(ident, limit=REGEX_HIT_LIMIT):
+                chunk_id = str(row["chunk_id"])
+                if chunk_id not in seen:
+                    seen.add(chunk_id)
+                    ordered.append(chunk_id)
+        return ordered[:REGEX_HIT_LIMIT]
+
     @component.output_types(documents=list[Document])
     def run(self, query: str) -> dict[str, list[Document]]:
         settings = load_settings(root=Path.cwd(), global_mode=True)
@@ -111,6 +137,18 @@ class MdrackRetriever:
                 embedding_provider=provider,
             )
             hits = engine.search(query, mode="hybrid", limit=SEARCH_LIMIT)
+
+            # слой ADR-003: точный поиск точечных идентификаторов из запроса
+            regex_ids = self._identifier_hits(conn, query)
+            if regex_ids:
+                regex_set = set(regex_ids)
+                hybrid_scores = dict(hits)
+                boost = max((s for _, s in hits), default=0.0) + 1.0
+                merged: list[tuple[str, float]] = [
+                    (cid, hybrid_scores.get(cid, boost)) for cid in regex_ids
+                ]
+                merged += [(cid, s) for cid, s in hits if cid not in regex_set]
+                hits = merged[:SEARCH_LIMIT]
 
             chunk_repo = ChunkRepository(conn)
             file_repo = FileRepository(conn)
@@ -140,6 +178,8 @@ class MdrackRetriever:
 class PipelineWrapper(BasePipelineWrapper):
     def setup(self) -> None:
         self._pool = ThreadPoolExecutor(max_workers=2, thread_name_prefix="ask_notes")
+        # накопление расхода токенов (для eval: token spend)
+        self.usage = {"prompt_tokens": 0, "completion_tokens": 0}
 
         self.retriever = MdrackRetriever()
         self.prompt_builder = ChatPromptBuilder(
@@ -191,6 +231,9 @@ class PipelineWrapper(BasePipelineWrapper):
         replies = result["replies"]
         if not replies or not replies[0].text:
             raise RuntimeError("модель вернула пустой ответ")
+        usage = (replies[0].meta or {}).get("usage") or {}
+        self.usage["prompt_tokens"] += int(usage.get("prompt_tokens") or 0)
+        self.usage["completion_tokens"] += int(usage.get("completion_tokens") or 0)
         return replies[0].text
 
     @staticmethod
