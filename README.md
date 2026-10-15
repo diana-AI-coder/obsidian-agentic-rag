@@ -1,5 +1,7 @@
 # obsidian-agentic-rag
 
+[![M8ven Score](https://m8ven.ai/badge/mcp/diana-ai-coder-obsidian-agentic-rag-2a2i0j?v=77c8c669c632c3de84c34adec96066de)](https://m8ven.ai/mcp/diana-ai-coder-obsidian-agentic-rag-2a2i0j?s=readme)
+
 Локальный ИИ-ассистент поверх любой markdown-базы знаний (Obsidian-vault): регламенты, ГОСТы, техдокументация, внутренние инструкции. Отвечает на вопросы строго по документам, без галлюцинаций. Всё работает локально: ни один файл не покидает компьютер.
 
 ## Проблема
