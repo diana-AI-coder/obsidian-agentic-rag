@@ -117,6 +117,16 @@ python -m mdrack search "порядок согласования докумен�
 #    (см. opencode.json → mcp → mdrack)
 ```
 
+## Тесты MCP-инструмента ask_notes
+
+```bash
+.venv/Scripts/python.exe -m unittest discover -s tests -v
+```
+
+18 тестов: валидация входа, разбор JSON, проверка цитат, форматирование источников,
+сценарии `run_api` (успех, пустой поиск, фолбэк после ретрая, устойчивость к падению retriever).
+Запускаются на stdlib `unittest`, без внешних зависимостей.
+
 ## Лицензия
 
 MIT
